@@ -5,18 +5,14 @@ import java.awt.event.ActionListener;
 
 public class MarathonAppGUI extends JFrame {
 
-    // Componentes del equipo
+  
     private JTextField campoNombreEquipo;
     private JTextField campoUniversidad;
     private JTextField campoLenguaje;
     private JButton botonCrearEquipo;
-
-    // Componentes para agregar programadores
     private JTextField campoNombreProg;
     private JTextField campoApellidosProg;
     private JButton botonAgregarProg;
-
-    // Área de salida e instancia del equipo
     private JTextArea areaSalida;
     private EquipoMaratonProgramacion equipo;
 
@@ -26,12 +22,8 @@ public class MarathonAppGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
-
-        // Panel Principal Superior (Contiene formulario de Equipo e Integrantes)
         JPanel panelFormularios = new JPanel();
         panelFormularios.setLayout(new BoxLayout(panelFormularios, BoxLayout.Y_AXIS));
-
-        // 1. Formulario de Datos del Equipo
         JPanel panelEquipo = new JPanel(new GridLayout(3, 2, 5, 5));
         panelEquipo.setBorder(BorderFactory.createTitledBorder("1. Datos del Equipo"));
 
@@ -52,7 +44,6 @@ public class MarathonAppGUI extends JFrame {
         JPanel panelBotonEquipo = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelBotonEquipo.add(botonCrearEquipo);
 
-        // 2. Formulario de Agregar Integrantes
         JPanel panelProgramador = new JPanel(new GridLayout(2, 2, 5, 5));
         panelProgramador.setBorder(BorderFactory.createTitledBorder("2. Agregar Integrante (Máx 3)"));
 
@@ -65,29 +56,25 @@ public class MarathonAppGUI extends JFrame {
         panelProgramador.add(campoApellidosProg);
 
         botonAgregarProg = new JButton("Agregar Integrante");
-        botonAgregarProg.setEnabled(false); // Inactivo hasta crear el equipo
+        botonAgregarProg.setEnabled(false);
 
         JPanel panelBotonProg = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelBotonProg.add(botonAgregarProg);
 
-        // Armar sección de formularios
         panelFormularios.add(panelEquipo);
         panelFormularios.add(panelBotonEquipo);
         panelFormularios.add(panelProgramador);
         panelFormularios.add(panelBotonProg);
 
-        // Área de salida (Log de eventos)
         areaSalida = new JTextArea();
         areaSalida.setEditable(false);
         areaSalida.setFont(new Font("Monospaced", Font.PLAIN, 12));
         JScrollPane scrollPane = new JScrollPane(areaSalida);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Estado del Equipo"));
 
-        // Agregar al contenedor principal
         add(panelFormularios, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Listeners de eventos
         botonCrearEquipo.addActionListener(e -> crearEquipo());
         botonAgregarProg.addActionListener(e -> agregarIntegrante());
     }
@@ -115,8 +102,6 @@ public class MarathonAppGUI extends JFrame {
             areaSalida.append("Universidad: " + equipo.universidad + "\n");
             areaSalida.append("Lenguaje: " + equipo.lenguajeProgramacion + "\n");
             areaSalida.append("-----------------------------------\n");
-
-            // Bloquear campos de equipo y habilitar los de programadores
             campoNombreEquipo.setEnabled(false);
             campoUniversidad.setEnabled(false);
             campoLenguaje.setEnabled(false);
@@ -146,7 +131,6 @@ public class MarathonAppGUI extends JFrame {
         }
 
         try {
-            // Validaciones estáticas de la clase EquipoMaratonProgramacion
             EquipoMaratonProgramacion.validarCampo(nombre);
             EquipoMaratonProgramacion.validarCampo(apellidos);
 
