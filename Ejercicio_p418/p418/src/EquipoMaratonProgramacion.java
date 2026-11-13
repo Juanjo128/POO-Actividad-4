@@ -7,10 +7,10 @@ class EquipoMaratonProgramacion {
 
     EquipoMaratonProgramacion(String nombreEquipo, String universidad, String lenguajeProgramacion) {
         this.nombreEquipo = nombreEquipo;
-        this.universidad = universidad; // Corregido asignación de parámetro
-        this.lenguajeProgramacion = lenguajeProgramacion; // Corregido asignación de parámetro
+        this.universidad = universidad;
+        this.lenguajeProgramacion = lenguajeProgramacion;
         this.tamañoEquipo = 0;
-        this.programadores = new Programador[3]; // Corregido inicialización del arreglo
+        this.programadores = new Programador[3];
     }
 
     boolean estáLleno() {
